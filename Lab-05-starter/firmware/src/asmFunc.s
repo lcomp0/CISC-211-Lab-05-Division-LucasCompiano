@@ -21,8 +21,8 @@
  * If you want these to be 0 every time asmFunc gets called, you must set
  * them to 0 at the start of your code!
  */
-dividend:          .word     0  
-divisor:           .word     0  
+dividend:          .word     27  
+divisor:           .word     5  
 quotient:          .word     0  
 mod:               .word     0 
 we_have_a_problem: .word     0
@@ -109,6 +109,14 @@ error:
     ldr r0, =we_have_a_problem
     mov r1, 1
     str r1, [r0]
+    
+dividend:          .word     0  
+divisor:           .word     0  
+quotient:          .word     0  
+mod:               .word     0 
+we_have_a_problem: .word     0
+
+
     
     /*** STUDENTS: Place your code ABOVE this line!!! **************/
 
