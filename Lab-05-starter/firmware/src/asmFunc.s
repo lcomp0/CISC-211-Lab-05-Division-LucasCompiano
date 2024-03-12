@@ -65,7 +65,50 @@ asmFunc:
      * Use it to test the C test code */
     
     /*** STUDENTS: Place your code BELOW this line!!! **************/
+    /* loading the registers */
+    ldr r0, =dividend
+    ldr r1, [r0]
+    ldr r0, =divisor
+    ldr r2, [r0]
 
+    /* Initialize top for quotient and bottom to remainder and set both to 0 */
+    mov r3, 0    
+    mov r4, 0    
+
+    /* Check to see if there will be a division by zero and if so make error */
+    cmp r2, 0
+    beq error     
+
+divide_loop:
+    
+    subs r1, r1, r2
+    /* If end product is 0 or negative end the loop */
+    blo done_division
+
+   /*Increasing the quotient by 1 each loop*/
+    adds r3, r3, 1
+
+    mov r1, r2
+ 
+    cmp r2, 0
+    beq error     
+
+    b divide_loop
+
+done_division:
+    /* Store our 2 results back into memory */
+    ldr r0, =quotient
+    str r3, [r0]
+    ldr r0, =mod
+    str r1, [r0]
+
+    b done      
+
+error:
+    /* Error checks */
+    ldr r0, =we_have_a_problem
+    mov r1, 1
+    str r1, [r0]
     
     /*** STUDENTS: Place your code ABOVE this line!!! **************/
 
